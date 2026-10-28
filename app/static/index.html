@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="公開情報からWebサイトのセキュリティ設定を確認します">
+  <title>Recon Header — Web Security Check</title>
+  <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+  <main>
+    <header class="hero">
+      <p class="eyebrow">PASSIVE SECURITY OBSERVATORY</p>
+      <h1>そのサイトの守りを、<br><span>外側から可視化。</span></h1>
+      <p class="lead">公開情報だけを使って、セキュリティヘッダー、TLS証明書、CMSの構成シグナルを一度に確認します。</p>
+    </header>
+
+    <section class="scanner" aria-labelledby="scan-title">
+      <div class="scanner-copy">
+        <span class="status-dot"></span>
+        <span id="scan-title">DOMAIN INSPECTOR</span>
+      </div>
+      <form id="scan-form">
+        <label for="domain">診断するドメイン</label>
+        <div class="input-row">
+          <span class="protocol">https://</span>
+          <input id="domain" name="domain" type="text" inputmode="url" autocomplete="url" placeholder="example.com" required aria-describedby="domain-help">
+          <button type="submit"><span>診断する</span><span aria-hidden="true">→</span></button>
+        </div>
+        <p id="domain-help">URLではなくドメイン名のみ入力してください。許可を得たサイトだけを診断してください。</p>
+      </form>
+    </section>
+
+    <section id="loading" class="loading hidden" aria-live="polite">
+      <div class="radar"><i></i></div>
+      <div><strong>公開シグナルを収集中</strong><p>DNS、HTTP、TLS、CMSを確認しています…</p></div>
+    </section>
+
+    <section id="error" class="error hidden" role="alert"></section>
+
+    <section id="results" class="results hidden" aria-live="polite">
+      <div class="result-head">
+        <div><p class="eyebrow">ASSESSMENT COMPLETE</p><h2 id="result-domain"></h2></div>
+        <div id="score" class="score"><strong>—</strong><span>CHECKS</span></div>
+      </div>
+      <div id="summary" class="summary"></div>
+      <div class="grid">
+        <article><h3>TLS / CERTIFICATE</h3><dl id="tls-data"></dl></article>
+        <article><h3>CMS SIGNALS</h3><dl id="cms-data"></dl></article>
+      </div>
+      <article class="findings-panel"><h3>FINDINGS</h3><div id="findings"></div></article>
+      <details><summary>レスポンスヘッダーを表示</summary><pre id="headers"></pre></details>
+    </section>
+  </main>
+  <footer>RECON HEADER / PASSIVE ANALYSIS ONLY</footer>
+  <script src="/static/app.js" defer></script>
+</body>
+</html>

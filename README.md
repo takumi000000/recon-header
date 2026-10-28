@@ -1,6 +1,6 @@
 # Recon Header API
 
-指定したドメインに対して、公開情報だけを使って次を診断する FastAPI アプリです。
+指定したドメインに対して、公開情報だけを使って次を診断する Web アプリです。ブラウザ用UIとJSON APIの両方を利用できます。
 
 - DNS 解決結果（プライベート・ローカル・予約済み IP は拒否）
 - HTTP セキュリティヘッダー
@@ -17,7 +17,7 @@ python3 -m venv .venv
 .venv/bin/uvicorn app.main:app --host 0.0.0.0 --port 8000
 ```
 
-OpenAPI UI は `http://localhost:8000/docs`、ヘルスチェックは `/health` です。
+Web画面は `http://localhost:8000/`、OpenAPI UI は `http://localhost:8000/docs`、ヘルスチェックは `/health` です。
 
 ## 診断
 

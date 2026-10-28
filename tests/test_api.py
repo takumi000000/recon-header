@@ -10,6 +10,13 @@ def test_health() -> None:
     assert client.get("/health").json() == {"status": "ok"}
 
 
+def test_web_app() -> None:
+    response = client.get("/")
+    assert response.status_code == 200
+    assert "DOMAIN INSPECTOR" in response.text
+    assert response.headers["content-type"].startswith("text/html")
+
+
 def test_rejects_url_instead_of_domain() -> None:
     response = client.post("/v1/scan", json={"domain": "https://example.com/path"})
     assert response.status_code == 422
